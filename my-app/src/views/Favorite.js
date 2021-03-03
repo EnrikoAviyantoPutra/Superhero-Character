@@ -7,11 +7,16 @@ function Favorite(props) {
   const data = useSelector(state => state.favorite)
   console.log(data, 'ini halaman di favorite')
 
-
+const checkLength = () =>{
+  if (data.length === 0) {
+    return <h1> You Don't Have Any Favorite</h1>
+    
+  }
+}
 
   return (
     <>
-      <h1>Ini Halaman Favorite</h1>
+    {checkLength()}
       <div className="container">
         <div className="row mb-2 mt-2">
 

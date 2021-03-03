@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchDetailSuperhero, addHeroFavorite } from '../store/action'
 import { useEffect, useState } from 'react'
+import Swal from 'sweetalert2'
 
 function Detail(props) {
   const { id } = useParams()
@@ -11,6 +12,7 @@ function Detail(props) {
   // const { data, loading } = fetchData(`https://akabab.github.io/superhero-api/api/id/${id}.json`)
   // console.log(data, '>>>>>>>>>>>>>>>>>>>>>>>ini data detail')
   const dispatch = useDispatch()
+  const dataFavorite = useSelector(state => state.favorite)
   const data = useSelector(state => state.superhero)
   const [loading, setLoading] = useState(true)
 
@@ -31,12 +33,24 @@ function Detail(props) {
 
   const addFavorite = (hero) => {
     console.log(hero, '<<<<<<<<<<<<<<<<<<<<<ini di data yang mau di add di favorite')
+    for (let i = 0; i < dataFavorite.length; i++) {
+      if (dataFavorite[i].id === hero.id) {
+        return Swal.fire({
+          icon: 'error',
+          title:'Already Added to Favorite' 
+        })
+      }
+    }
     dispatch(addHeroFavorite(hero))
+    Swal.fire ({
+      icon: 'success',
+      title: 'Added to Favorite'
+    })
   }
   if (data.name) {
     return (
       <>
-              <h1>Character Preview</h1><br />
+        <h1>Character Preview</h1><br />
         {/* <h2>{data.name}</h2> */}
 
         {loading ? <lottie-player src="https://assets10.lottiefiles.com/datafiles/wk8EJuzzGk9yWa1/data.json" background="transparent" speed="1" style={{ 'width': '300px', 'height': '300px' }} loop autoplay>LOADING....</lottie-player> :

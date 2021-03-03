@@ -17,7 +17,7 @@ function reducer(state = initialState, action) {
     case 'FETCHDETAIL/SUPERHERO':
       return { ...state, superhero: payload }
     case 'ADDFAVORITE/SUPERHERO':
-      return { ...state, favorite: payload }
+      return { ...state, favorite: [...state.favorite, payload] }
 
     default:
       return state
