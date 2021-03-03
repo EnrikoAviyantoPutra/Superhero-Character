@@ -2,7 +2,7 @@ import React from 'react'
 
 import { useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { fetchDetailSuperhero } from '../store/action'
+import { fetchDetailSuperhero, addHeroFavorite } from '../store/action'
 import { useEffect, useState } from 'react'
 
 function Detail(props) {
@@ -31,6 +31,7 @@ function Detail(props) {
 
   const addFavorite = (hero) => {
     console.log(hero, '<<<<<<<<<<<<<<<<<<<<<ini di data yang mau di add di favorite')
+    dispatch(addHeroFavorite(hero))
   }
   if (data.name) {
     return (

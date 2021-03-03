@@ -5,3 +5,7 @@ export function fetchDataSuperheroes(payload) {
 export function fetchDetailSuperhero(payload) {
   return { type: 'FETCHDETAIL/SUPERHERO', payload}
 }
+
+export function addHeroFavorite(payload) {
+  return { type: 'ADDFAVORITE/SUPERHERO', payload}
+}
