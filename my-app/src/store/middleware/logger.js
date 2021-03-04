@@ -5,4 +5,4 @@ const logger = store => next => action => {
 
     console.log('Hasil dari action', store.getState())
 }
-export default logger     
+export default logger    
