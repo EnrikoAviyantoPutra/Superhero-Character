@@ -1,28 +1,16 @@
-import { createStore } from 'redux'
+import { createStore, combineReducers, applyMiddleware } from 'redux'
+import thunk from 'redux-thunk'
+import heroesReducer from './reducers/heroes'
+import heroReducer from './reducers/hero'
+import favoriteReducer from './reducers/favorite'
+// import logger from './middleware/logger'
 
-const initialState = {
-  superheroes: [],
-  superhero: {},
-  favorite: [],
-  test: 'hello from redux',
-  error: null,
-  loading: false
-}
+const rootReducer = combineReducers ({
+  superheroes: heroesReducer,
+  superhero: heroReducer,
+  favorite: favoriteReducer
+})
 
-function reducer(state = initialState, action) {
-  const { type, payload } = action
-  switch (type) {
-    case 'FETCHDATA/SUPERHEROES':
-      return { ...state, superheroes: payload }
-    case 'FETCHDETAIL/SUPERHERO':
-      return { ...state, superhero: payload }
-    case 'ADDFAVORITE/SUPERHERO':
-      return { ...state, favorite: [...state.favorite, payload] }
-
-    default:
-      return state
-  }
-}
-const store = createStore(reducer)
+const store = createStore(rootReducer,applyMiddleware(thunk))
 
 export default store

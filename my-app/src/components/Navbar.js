@@ -1,8 +1,15 @@
 import React from 'react'
-import {NavLink} from 'react-router-dom'
+import {NavLink, useHistory} from 'react-router-dom'
+
+
+
 
 
 export default function Navbar() {
+  const history = useHistory()
+  const page = (payload) => {
+    history.push(`/${payload}`)
+  } 
   return (
     <nav class="navbar navbar-expand-lg navbar-light bg-dark">
         <div class="container-fluid">
@@ -14,11 +21,11 @@ export default function Navbar() {
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
                 {/* <a class="nav-link active text-white" aria-current="page" href="#!">Home</a> */}
-                <NavLink to="/">Home</NavLink>
+                <button className="btn text-white" onClick={() => page ('')}>Home</button>
+                <button className="btn text-white" onClick={() => page ('favorite')}>Favorite</button>
               </li>
               <li class="nav-item">
                 {/* <a class="nav-link active text-white" aria-current="page" href="#!">Favorite</a> */}
-                <NavLink to="/favorite">Favorite</NavLink>
               </li>
             </ul>
             <form class="d-flex">

@@ -11,7 +11,7 @@ export default function Heroes(data) {
   const hero = data.heroes
   const history = useHistory()
   const dispatch = useDispatch()
-  const dataFavorite = useSelector(state => state.favorite)
+  const dataFavorite = useSelector(state => state.favorite.favorite)
 
   const getDetail = (id) => {
     // console.log(id, '<<<<<<<<<<<')
@@ -54,13 +54,14 @@ export default function Heroes(data) {
               getDetail(hero.id)
             }
             className="btn btn-primary">Detail</button>
-          <button
+          {/* <button
             onClick={() =>
-              // <Detail id={hero.id} /> 
-              // console.log(hero.id, 'ini button click')
               addFavorite(hero)
             }
-            className="btn btn-info text-white ml-2">Favorite</button>
+            className="btn btn-info text-white ml-2">Favorite</button> */}
+            <img src="https://img.icons8.com/plasticine/100/000000/add-to-favorites--v1.png"  style={{height: '60px', cursor: 'pointer'}}onClick={() =>
+              addFavorite(hero)
+            }/ >
         </div>
       </div>
     </div>
